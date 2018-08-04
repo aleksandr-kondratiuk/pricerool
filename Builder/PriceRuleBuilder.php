@@ -1,16 +1,14 @@
 <?php
 
-namespace SP\PriceRool\Builder;
+namespace SP\PriceRule\Builder;
 
-use Magento\Framework\View\Element\Template\Context;
 use Magento\SalesRule\Api\RuleRepositoryInterface;
 use Magento\SalesRule\Api\Data\ConditionInterface;
-use Magento\Framework\View\Element\Template;
 use Magento\SalesRule\Model\Rule;
 use Magento\SalesRule\Model\Rule\Condition\Product\Found;
 use Magento\SalesRule\Model\Rule\Condition\Product as ConditionProduct;
 
-class Builder extends Template
+class PriceRuleBuilder
 {
     /**
      * SKU argument
@@ -20,10 +18,6 @@ class Builder extends Template
      * @var \Magento\Framework\App\State
      */
     protected $appState;
-    /**
-     * @var Context
-     */
-    protected $context;
 
     /**
      * @var RuleRepositoryInterface
@@ -50,23 +44,18 @@ class Builder extends Template
     protected $conditionProduct;
 
     public function __construct(
-//        \Magento\Framework\App\State $appState,
-        Context $context,
         RuleRepositoryInterface $ruleRepository,
         ConditionInterface $condition,
         Rule $rule,
         Found $found,
         ConditionProduct $conditionProduct
     ) {
-//        $appState->setAreaCode('admin');
-        parent::__construct($context);
         $this->ruleRepository   = $ruleRepository;
         $this->condition        = $condition;
         $this->rule             = $rule;
         $this->found            = $found;
         $this->conditionProduct = $conditionProduct;
     }
-
 
     public function createRule()
     {

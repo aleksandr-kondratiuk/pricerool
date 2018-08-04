@@ -1,12 +1,12 @@
 <?php
 
-namespace SP\PriceRool\Block;
+namespace SP\PriceRule\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\Registry;
 use Magento\Customer\Model\Session;
 use Magento\CatalogInventory\Model\Stock\StockItemRepository;
-use SP\PriceRool\Builder\Builder;
+use SP\PriceRule\Builder\PriceRuleBuilder;
 
 
 class Display extends Template
@@ -20,7 +20,7 @@ class Display extends Template
     /** @var Registry */
     protected $_registry;
 
-    /** @var Builder */
+    /** @var PriceRuleBuilder */
     protected $_builder;
 
     public function __construct(
@@ -28,7 +28,7 @@ class Display extends Template
         Session $session,
         StockItemRepository $stockItemRepository,
         Registry $registry,
-        Builder $builder,
+        PriceRuleBuilder $builder,
         array $data = []
     ) {
         $this->customerSession= $session;
@@ -56,5 +56,14 @@ class Display extends Template
     public function getCurrentProduct()
     {
         return $this->_registry->registry('current_product');
+    }
+
+
+    public function isOutOfStock()
+    {
+        $product = $this->getCurrentProduct();
+        if($product){
+            return $this->getStockItem($product->getId());
+        }
     }
 }
