@@ -1,7 +1,9 @@
 <?php
 /** @var $block \SP\PriceRule\Block\Display */
-
 ?>
+
+<?php if($block->isOutOfStock()):?>
 <div class="pricerool-block">
-    <h1><?= __('Test 123') ?></h1>
+    <h1>Out of stock</h1>
 </div>
+<?php endif; ?>

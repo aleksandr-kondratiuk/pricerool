@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="product.info.stock.sku">
-            <block class="SP\PriceRule\Block\Display" name="pricerule_display" template="SP_PriceRule::display.phtml"  />
+            <block class="SP\PriceRule\Block\Display" name="price_rule_display" template="SP_PriceRule::display.phtml"  />
         </referenceContainer>
     </body>
 </page>

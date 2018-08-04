@@ -41,7 +41,7 @@ class Display extends Template
     public function _toHtml()
     {
         if ($this->customerSession->isLoggedIn()){
-            $this->_builder->createRule();
+//            $this->_builder->createRule();
             return parent::_toHtml();
         } else {
             return '';
@@ -63,7 +63,9 @@ class Display extends Template
     {
         $product = $this->getCurrentProduct();
         if($product){
-            return $this->getStockItem($product->getId());
+            $stockItem = $this->getStockItem($product->getId());
+            return !$stockItem->getIsInStock();
         }
+        return '';
     }
 }
